@@ -53,7 +53,7 @@ public class CSVHelper {
     }
 
     public static ByteArrayInputStream apiModelToCSV(List<APIModel> apiModelList) {
-        final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
+        final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.ALL_NON_NULL);
     
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
             CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format);) {
@@ -65,7 +65,7 @@ public class CSVHelper {
                     //apiModel.getExCode(),
                     apiModel.getEnteredDate(),
                     apiModel.getCurrency(),
-                    String.valueOf(apiModel.getAmount()),
+                    apiModel.getAmount(),
                     apiModel.getBeneficiary(),
                     "exchane code",
                     apiModel.getBankName(),
@@ -74,9 +74,15 @@ public class CSVHelper {
                     apiModel.getBeneficiaryAccount(),
                     apiModel.getRemitter(),
                     null,
+                    null,
                     //apiModel.getBankCode(),
-                    apiModel.getBranchCode()
-                  
+                    apiModel.getBranchCode(),
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
                 );
     
             csvPrinter.printRecord(data);
