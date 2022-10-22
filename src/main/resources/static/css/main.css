@@ -21,7 +21,7 @@ body:before {
     position: absolute;
     top: 0;
     left: 0;
-    background: #ed9af5;
+    background: #579F43;
     content: "";
     z-index: 0;
 }
@@ -62,7 +62,7 @@ button {
 }
 
 button.primary {
-    background-color: #ed9af5;
+    background-color: rgb(64,137,11);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
     color: #fff;
 }
