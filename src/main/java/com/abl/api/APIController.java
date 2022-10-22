@@ -26,13 +26,14 @@ public class APIController {
   public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
     String message = "";
     if (CSVHelper.hasCSVFormat(file)) {
-
+      int extensionIndex = file.getOriginalFilename().lastIndexOf(".");
+      String fileNameWithoutExtension = file.getOriginalFilename().substring(0,extensionIndex);
       try {
         fileService.save(file);
         message = "Uploaded the file successfully: " + file.getOriginalFilename();
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/api/csv/download/")
-                .path(file.getOriginalFilename())
+                .path(fileNameWithoutExtension+".txt")
                 .toUriString();
 
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message,fileDownloadUri));
@@ -56,7 +57,6 @@ public class APIController {
       if (apiModels.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
       }
-
       return new ResponseEntity<>(apiModels, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -67,10 +67,11 @@ public class APIController {
   @GetMapping("/download/{fileName:.+}")
   public ResponseEntity<Resource> downloadFile(@PathVariable String fileName) {
     InputStreamResource file = new InputStreamResource(fileService.load());
-
+    int extensionIndex = fileName.lastIndexOf(".");
+    String fileNameWithoutExtension = fileName.substring(0,extensionIndex);
     return ResponseEntity.ok()
-        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName)
-        .contentType(MediaType.parseMediaType("application/csv"))
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+fileNameWithoutExtension+".txt")
+        .contentType(MediaType.parseMediaType(MediaType.TEXT_PLAIN_VALUE))
         .body(file);
   }
 
