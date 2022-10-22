@@ -59,19 +59,23 @@ public class CSVHelper {
             CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format);) {
           for (APIModel apiModel : apiModelList) {
             List<Object> data = Arrays.asList(
-                  String.valueOf(apiModel.getId()),
-                  apiModel.getExCode(),
-                  apiModel.getTranNo(),
-                  apiModel.getCurrency(),
-                  String.valueOf(apiModel.getAmount()),
-                  apiModel.getEnteredDate(),
-                  apiModel.getRemitter(),
-                  apiModel.getBeneficiary(),
-                  apiModel.getBeneficiaryAccount(),
-                  apiModel.getBankName(),
-                  apiModel.getBankCode(),
-                  apiModel.getBranchName(),
-                  apiModel.getBranchCode()
+                  //String.valueOf(apiModel.getId()),
+                    apiModel.getTranNo(),
+                    "CRED",
+                    //apiModel.getExCode(),
+                    apiModel.getEnteredDate(),
+                    apiModel.getCurrency(),
+                    String.valueOf(apiModel.getAmount()),
+                    apiModel.getBeneficiary(),
+                    "exchane code",
+                    apiModel.getBankName(),
+                    apiModel.getBranchName(),
+                    null,
+                    apiModel.getBeneficiaryAccount(),
+                    apiModel.getRemitter(),
+                    null,
+                    //apiModel.getBankCode(),
+                    apiModel.getBranchCode()
                   
                 );
     
