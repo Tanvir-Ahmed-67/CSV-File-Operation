@@ -53,7 +53,7 @@ public class CSVHelper {
     }
 
     public static ByteArrayInputStream apiModelToCSV(List<APIModel> apiModelList) {
-        final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.ALL_NON_NULL);
+        final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.NON_NUMERIC);
     
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
             CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format);) {
@@ -84,7 +84,6 @@ public class CSVHelper {
                     null,
                     null
                 );
-    
             csvPrinter.printRecord(data);
           }
     
