@@ -1,0 +1,120 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Oct 23, 2022 at 11:21 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `api_converter`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qvoucherinfo`
+--
+
+CREATE TABLE `qvoucherinfo` (
+  `row_id` int(10) NOT NULL,
+  `ex_name` varchar(30) DEFAULT NULL,
+  `nrta` varchar(10) DEFAULT NULL,
+  `ex_code` varchar(9) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `qvoucherinfo`
+--
+
+INSERT INTO `qvoucherinfo` (`row_id`, `ex_name`, `nrta`, `ex_code`) VALUES
+(1, 'Al-Rajhi Banking & Investment ', '7009', '7119'),
+(2, 'Arab National Bank, Riyadh, K.', '7030', '7010203'),
+(3, 'Bank Al-Bilad, Riyadh, K.S.A', '7031', '7010204'),
+(4, 'Al-Fardan Exchange  Co. Doha, ', '7002', '7010205'),
+(5, 'Eastern Exchange Est. Doha, Qa', '7000', '7010206'),
+(6, 'Kuwait Bahrain Int\'l Ex. Kuwai', '7006', '7010207'),
+(7, 'Oman Exchange Co, Kuwait', '7008', '7010208'),
+(8, 'Bahrain Exchange Co, Kuwait', '7012', '7010209'),
+(9, 'City Int\'l Exchange Co, Kuwait', '7016', '7010211'),
+(10, 'Oman Int\'l Exchange Ltd. Oman ', '7021', '7010215'),
+(11, 'Unimoni Exchange', '7034', '7010216'),
+(12, 'Zenj Exchange Co. Bahrain', '7003', '7010219'),
+(13, 'Al-Fardan Exchange, AbuDhabi', '7010', '7010220'),
+(14, 'Al Ahalia Money Ex. ', '7047', '7010221'),
+(15, 'Index Exchange Co. LLC', '7024', '7010223'),
+(16, 'Wall Street Exchange, Abu Dhab', '7033', '7010224'),
+(17, 'U.A.E. Exchange LLC, Abu Dhabi', '7028', '7010225'),
+(18, 'Al Muzaini Exchange Company, K', '7038', '7010231'),
+(19, 'Al Mulla Int. Ex. Co. Kuwait ', '7040', '7010232'),
+(20, 'AL-Ghurair Ex. Dubai, UAE', '7043', '7010233'),
+(21, 'National Finance and Exch. Co.', '7046', '7010234'),
+(22, 'Prabhu Group Inc. U S A', '7051', '7010238'),
+(23, 'Al Ansari Ex. Co, Abu Dhabi, U', '7053', '7010239'),
+(24, 'Al Rostamani Int\'l Ex. Co. Abu', '7052', '7010240'),
+(25, 'NCBJ, Jeddah, KSA', '7055', '7010241'),
+(26, 'Lari Exchange  (Abu Dhabi, UAE', '7054', '7010242'),
+(27, 'Bahrain Financing Co. Bahrain ', '7013', '7010243'),
+(28, 'Emirates India Int. Ex. , UAE', '7056', '7010244'),
+(29, 'Al Zaman Ex. , Qatar', '7057', '7010245'),
+(30, 'Al jadeed Exchange', '7058', '7010246'),
+(31, 'Standard Express', '7060', '7010248'),
+(32, 'Modern Ex. Co., Oman', '7061', '7010250'),
+(33, 'Choice Money Ex. , USA', '7066', '7010251'),
+(34, 'Multinet  trust Ex. LLC, UAE ', '7067', '7010252'),
+(35, 'Dollarco Exchange Co. Kuwait', '7019', '7010254'),
+(36, 'SIGUE Global Sercice ', '7074', '7010256'),
+(37, 'U.A.E. Exchange, Malaysia', '7075', '7010257'),
+(38, 'Instant Cash', '7080', '7010260'),
+(39, 'ALAWANEH EX. JORDAN', '7082', '7010262'),
+(40, 'Aman Ex- Kuwait', '7084', '7010263'),
+(41, 'Modern Ex. Co., Bahrain', '7083', '7010265'),
+(42, 'U REMIT INTERNATIONAL, CANADA', '7088', '7010267'),
+(43, 'Val You SDN BHD', '7090', '7010268'),
+(44, 'Val You SDN BHD', '7090', '7010268'),
+(45, 'The Saudi Investment Bank (SAI', '7086', '7010266'),
+(46, 'K & H Remittance Services Brun', '7092', '7010271'),
+(47, 'NEC Money Transfer, UK', '7087', '7010272'),
+(48, 'Agrani Exchange House, Singapo', '7025', '7010226'),
+(49, 'Agrani Exchange House, Singapo', '7025', '7010273'),
+(50, 'Sunman Express 	', '7096', '7010274'),
+(51, 'NBL Money Transfer,Malaysia', '7059', '7010276'),
+(52, 'Global Money Express, S K', '7095', '7010277'),
+(53, 'Brac Saajjan Exchange', '7091', '7010278'),
+(54, 'Belhasa Global Ex', '7098', '7010279'),
+(55, 'Easter Exchange', '7000', '701020624'),
+(56, 'Hamdan Exchange', '7099', '7010284'),
+(57, 'Lulu Exchange Co', '7050', '701023724'),
+(58, 'NBL Money Transfer USA', '7077', '7010285'),
+(59, 'National Exchange, Italy', '7037', '7010229'),
+(60, 'Gulf Overseas', '7069', '7010287'),
+(61, 'Singapur API BEFTN', '7010226', '7010226'),
+(62, 'City pay Malysia', '7071', '7010288'),
+(63, 'RIA', '7081', '7010290'),
+(64, 'Global Money Exchange,Oman', '7089', '7010269'),
+(65, 'Placid NK orp', '7065', '7010286'),
+(66, 'Aftab Currency Exchange Ltd.UK', '7100', '7010291'),
+(67, 'GMoney Transfer Co.Ltd.', '7103', '7010292'),
+(68, 'UAE Exchange WLL,Kuwait', '7027', '7010213'),
+(69, 'Joyalukkas Ex Dubai,UAE', '7072', '7010255'),
+(70, 'Joyalukkas Ex WLL,KUWAIT', '7085', '7010264'),
+(71, 'Joyalukkas Ex Oman', '7078', '7010258'),
+(72, 'Terra Payment Services Ltd. Ma', '7101', '7010293'),
+(73, 'MaxMoney', '7094', '7010295'),
+(74, 'SG Quick Pay, PTE LTD, SNG', '7107', '7010296');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
