@@ -71,7 +71,7 @@ public class APIController {
     String fileNameWithoutExtension = fileName.substring(0,extensionIndex);
     return ResponseEntity.ok()
         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+fileNameWithoutExtension+".txt")
-        .contentType(MediaType.parseMediaType(MediaType.TEXT_PLAIN_VALUE))
+        .contentType(MediaType.parseMediaType("application/csv"))
         .body(file);
   }
 
