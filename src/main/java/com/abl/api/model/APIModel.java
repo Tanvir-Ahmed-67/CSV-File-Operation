@@ -1,4 +1,4 @@
-package com.abl.api;
+package com.abl.api.model;
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
@@ -13,7 +13,7 @@ public class APIModel {
     @SequenceGenerator(name = "seqGen", sequenceName = "seq", initialValue = 1)
     private int id;
     @Column(name = "exCode")
-    private int exCode;
+    private String exCode;
     @Column(name = "tranNo")
     private String tranNo;
     @Column(name = "currency")
@@ -41,7 +41,7 @@ public class APIModel {
 
     }
 
-    public APIModel(int exCode, String tranNo, String currency, double amount, String enteredDate, String remitter, String beneficiary, String beneficiaryAccount, String bankName, String bankCode, String branchName, String branchCode){
+    public APIModel(String exCode, String tranNo, String currency, double amount, String enteredDate, String remitter, String beneficiary, String beneficiaryAccount, String bankName, String bankCode, String branchName, String branchCode){
          this.exCode= exCode;
          this.tranNo= tranNo;
          this.currency = currency;
@@ -61,7 +61,7 @@ public class APIModel {
     public int getId(){
         return id;
     }
-    public int getExCode(){
+    public String getExCode(){
         return exCode;
     }
     public String getTranNo(){
@@ -104,7 +104,7 @@ public class APIModel {
     public void setId(int id){
         this.id = id;
     }
-    public void setExCode(int exCode){
+    public void setExCode(String exCode){
         this.exCode = exCode;
     }
     public void setTranNo(String tranNo){

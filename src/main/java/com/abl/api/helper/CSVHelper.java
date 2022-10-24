@@ -1,10 +1,11 @@
-package com.abl.api;
+package com.abl.api.helper;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.abl.api.model.APIModel;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
@@ -15,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class CSVHelper {
     public static String TYPE = "text/csv";
     static String[] HEADERs = {"Excode","Tranno","Currency","Amount","Entered Date","Remitter","Beneficiary","Bene A/C","Bank Name","Bank Code","Branch Name","Branch Code"};
-
     public static boolean hasCSVFormat(MultipartFile file) {
         if (TYPE.equals(file.getContentType())
     		|| file.getContentType().equals("application/vnd.ms-excel")) {
@@ -32,7 +32,7 @@ public class CSVHelper {
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
             for (CSVRecord csvRecord : csvRecords) {
                 APIModel apiModel = new APIModel(
-                    Integer.parseInt(csvRecord.get("Excode").replace("\"", "")),
+                    csvRecord.get("Excode").replace("\"", ""),
                     csvRecord.get("Tranno").replace("\"", ""),
                     csvRecord.get("Currency").replace("\"", ""),
                     Double.parseDouble(csvRecord.get("Amount").replace("\"", "")),
@@ -59,15 +59,13 @@ public class CSVHelper {
             CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format);) {
           for (APIModel apiModel : apiModelList) {
             List<Object> data = Arrays.asList(
-                  //String.valueOf(apiModel.getId()),
                     apiModel.getTranNo(),
                     "CRED",
-                    //apiModel.getExCode(),
                     apiModel.getEnteredDate(),
                     apiModel.getCurrency(),
                     apiModel.getAmount(),
                     apiModel.getBeneficiary(),
-                    "exchane code",
+                    apiModel.getExCode(),
                     apiModel.getBankName(),
                     apiModel.getBranchName(),
                     null,
