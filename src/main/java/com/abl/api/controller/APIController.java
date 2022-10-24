@@ -32,7 +32,6 @@ public class APIController {
 
     @GetMapping(value = "/cleardb")
     public ResponseEntity<ResponseMessage> clearDb() {
-      System.out.println("Database Cleared");
       String message = "Database Cleared!";
       fileService.clearDatabase();
       return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
