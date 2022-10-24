@@ -12,8 +12,8 @@ import com.abl.api.helper.CSVHelper;
 import com.abl.api.model.APIModel;
 import com.abl.api.repository.ExchangeCodeMapperModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -58,5 +58,29 @@ public class CSVService {
     }
     public List<APIModel> getAllApiModels() {
         return repository.findAll();
+    }
+
+    public void clearDatabase(){
+        truncateApi_data_table();
+        truncateHibernetSequenceTable();
+        truncateSeqTable();
+        initializeSeqTable();
+    }
+
+    @Transactional
+    public void truncateApi_data_table() {
+        repository.truncateApiDataTable();
+    }
+    @Transactional
+    public void truncateHibernetSequenceTable() {
+        repository.truncateHibernateSequenceTable();
+    }
+    @Transactional
+    public void truncateSeqTable() {
+        repository.truncateSeqTable();
+    }
+    @Transactional
+    public void initializeSeqTable() {
+        repository.initializeSeqTable();
     }
 }

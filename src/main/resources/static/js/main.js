@@ -30,6 +30,27 @@ function uploadSingleFile(file) {
 
     xhr.send(formData);
 }
+function clearDataTable(){
+    var xhr1 = new XMLHttpRequest();
+    xhr1.open("GET", "http://localhost:8080/api/csv/cleardb");
+    xhr1.onload = function() {
+        console.log(xhr1.responseText);
+        if(xhr1.status == 200) {
+            singleFileUploadError.style.display = "none";
+            singleFileUploadSuccess.innerHTML = "<p>Database Cleared!</p>";
+            singleFileUploadSuccess.style.display = "block";
+        } else {
+            singleFileUploadSuccess.style.display = "none";
+            singleFileUploadError.innerHTML = "<p>Error Occurred. Reload The page and try again!<p>" || "Some Error Occurred";
+            singleFileUploadSuccess.style.display = "block";
+
+        }
+    }
+    xhr1.send();
+    var frm = document.getElementById('singleFileUploadInput');
+    frm.value = '';
+    frm.reset();
+}
 
 singleUploadForm.addEventListener('submit', function(event){
     var files = singleFileUploadInput.files;
@@ -40,3 +61,4 @@ singleUploadForm.addEventListener('submit', function(event){
     uploadSingleFile(files[0]);
     event.preventDefault();
 }, true);
+
