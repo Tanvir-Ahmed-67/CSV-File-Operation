@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @CrossOrigin("http://localhost:8080")
@@ -24,7 +25,18 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class APIController {
     @Autowired
     CSVService fileService;
-    
+    @GetMapping(value = "/index")
+    public String homePage() {
+      return "indexPrevious";
+    }
+
+    @GetMapping(value = "/cleardb")
+    public ResponseEntity<ResponseMessage> clearDb() {
+      System.out.println("Database Cleared");
+      String message = "Database Cleared!";
+      fileService.clearDatabase();
+      return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+    }
 
   @PostMapping("/upload")
   public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
