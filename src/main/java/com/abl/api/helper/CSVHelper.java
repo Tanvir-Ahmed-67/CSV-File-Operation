@@ -81,6 +81,7 @@ public class CSVHelper {
                     null,
                     null,
                     null,
+                    null,
                     null
                 );
             csvPrinter.printRecord(data);
