@@ -2,9 +2,12 @@ package com.abl.api.service;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 import com.abl.api.model.ExchangeCodeMapperModel;
 import com.abl.api.repository.APIModelRepository;
@@ -40,7 +43,10 @@ public class CSVService {
           List<APIModel> apimodels = CSVHelper.csvToAPIModels(file.getInputStream());
             exchangeCodeMappingForService = mapExchangeCode();
           for(APIModel apiModel: apimodels){
-              apiModel.setExCode(exchangeCodeMappingForService.get(apiModel.getExCode()));
+              apiModel.setExCode(exchangeCodeMappingForService.get(apiModel.getExCode()).trim());
+              if(apiModel.getExCode().equals("7119")){
+                  apiModel.setEnteredDate(modifyDateFormat(apiModel.getEnteredDate()));
+              }
           }
           repository.saveAll(apimodels);
         } catch (IOException e) {
@@ -65,6 +71,18 @@ public class CSVService {
         truncateHibernetSequenceTable();
         truncateSeqTable();
         initializeSeqTable();
+    }
+    public String modifyDateFormat(String date){
+        DateFormat formatter;
+        formatter = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date1 = formatter.parse(date);
+            formatter = new SimpleDateFormat("yyMMdd");
+            date = formatter.format(date1);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        return date;
     }
 
     @Transactional
