@@ -1,6 +1,6 @@
-package com.abl.api.repository;
+package com.api.repository;
 
-import com.abl.api.model.APIModel;
+import com.api.model.APIModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

@@ -1,4 +1,4 @@
-package com.abl.api;
+package com.api;
 
 public class ResponseMessage {
     private String message;

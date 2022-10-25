@@ -1,6 +1,6 @@
-package com.abl.api.repository;
+package com.api.repository;
 
-import com.abl.api.model.ExchangeCodeMapperModel;
+import com.api.model.ExchangeCodeMapperModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ExchangeCodeMapperModelRepository extends JpaRepository<ExchangeCodeMapperModel, Integer> {

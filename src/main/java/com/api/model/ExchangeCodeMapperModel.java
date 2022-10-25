@@ -1,4 +1,4 @@
-package com.abl.api.model;
+package com.api.model;
 
 import javax.persistence.*;
 
