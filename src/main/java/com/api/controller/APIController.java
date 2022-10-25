@@ -17,13 +17,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-@CrossOrigin("http://localhost:8080")
 @Controller
+@CrossOrigin("http://localhost:8080")
 @RequestMapping("/api/csv")
 public class APIController {
-    @Autowired(required = true)
-    CSVService fileService;
+  private final CSVService fileService;
+  @Autowired
+  public APIController(CSVService csvService){
+    this.fileService = csvService;
+  }
     @GetMapping(value = "/index")
     public String homePage() {
       return "indexPrevious";

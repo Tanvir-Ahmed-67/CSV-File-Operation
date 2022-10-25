@@ -130,8 +130,8 @@ input[type="file"] {
     word-break: break-all;
 }
 .button-24 {
-    background: #FF4742;
-    border: 1px solid #FF4742;
+    background: #3B7C8A;
+    border: 1px solid #3B7C8A;
     border-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
     box-sizing: border-box;
@@ -158,9 +158,32 @@ input[type="file"] {
 .button-24:active {
     background-color: initial;
     background-position: 0 0;
-    color: #FF4742;
+    color: #3B7C8A;
 }
 
 .button-24:active {
     opacity: .5;
 }
+
+.button-12 {
+    cursor: pointer;
+    outline: 0;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid transparent;
+    padding: 7px 24px;
+    border-radius: .25rem;
+    font-size: 1rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    color: #3B7C8A;
+    border-color: #3B7C8A;
+}
+.button-12:hover {
+    color: #fff;
+    background-color: #3B7C8A;
+    border-color: #3B7C8A;
+}
+
