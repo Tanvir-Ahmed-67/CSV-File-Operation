@@ -32,7 +32,7 @@ function uploadSingleFile(file) {
 }
 function clearDataTable(){
     var xhr1 = new XMLHttpRequest();
-    xhr1.open("GET", "http://localhost:8080/api/csv/cleardb");
+    xhr1.open("GET", "/api/csv/cleardb");
     xhr1.onload = function() {
         console.log(xhr1.responseText);
         if(xhr1.status == 200) {
