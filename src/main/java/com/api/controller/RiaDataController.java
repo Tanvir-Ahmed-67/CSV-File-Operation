@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @CrossOrigin("http://localhost:8080")
-@RequestMapping("/ria/csv")
+@RequestMapping("/ria")
 public class RiaDataController {
     @Autowired
     private final RiaDataService riaDataService;

@@ -19,7 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.util.List;
 @Controller
 @CrossOrigin("http://localhost:8080")
-@RequestMapping("/api/csv")
+@RequestMapping("/api")
 public class APIController {
   private final CSVService fileService;
   @Autowired
@@ -28,7 +28,7 @@ public class APIController {
   }
     @GetMapping(value = "/index")
     public String homePage() {
-      return "indexPrevious";
+      return "api";
     }
 
     @GetMapping(value = "/cleardb")

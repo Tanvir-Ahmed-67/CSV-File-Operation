@@ -30,13 +30,15 @@ public class RiaDataModel {
     private String beneficiaryAccount;
     @Column(name = "t24_status")
     private String t24Status;
+    @Column(name = "status")
+    private String status;
     @Column(name = "paid_date")
     private String paidDate;
     @Column(name = "paid_by")
     private String paidBy;
 
-    public RiaDataModel(int id, String pin, Double amount, String orderNo, String remitter, Double incentive, String senderCountry, String beneficiaryName, String beneficiaryAccount, String t24Status, String paidDate, String paidBy) {
-        this.id = id;
+
+    public RiaDataModel(String pin, Double amount, String orderNo, String remitter, Double incentive, String senderCountry, String beneficiaryName, String beneficiaryAccount, String t24Status, String status, String paidDate, String paidBy) {
         this.pin = pin;
         this.amount = amount;
         this.orderNo = orderNo;
@@ -46,6 +48,7 @@ public class RiaDataModel {
         this.beneficiaryName = beneficiaryName;
         this.beneficiaryAccount = beneficiaryAccount;
         this.t24Status = t24Status;
+        this.status = t24Status;
         this.paidDate = paidDate;
         this.paidBy = paidBy;
     }
@@ -67,11 +70,16 @@ public class RiaDataModel {
                 ", beneficiaryName='" + beneficiaryName + '\'' +
                 ", beneficiaryAccount='" + beneficiaryAccount + '\'' +
                 ", t24Status='" + t24Status + '\'' +
+                ", status='" + status + '\'' +
                 ", paidDate='" + paidDate + '\'' +
                 ", paidBy='" + paidBy + '\'' +
                 '}';
     }
+    public String getStatus() { return status; }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
     public int getId() {
         return id;
     }
