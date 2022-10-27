@@ -1,9 +1,9 @@
 package com.api.service;
 
-import com.api.helper.CSVHelper;
-import com.api.model.APIModel;
+import com.api.helper.ApiDataServiceHelper;
+import com.api.model.ApiDataModel;
 import com.api.model.ExchangeCodeMapperModel;
-import com.api.repository.APIModelRepository;
+import com.api.repository.ApiDataModelRepository;
 import com.api.repository.ExchangeCodeMapperModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class CSVService {
+public class ApiDataService {
     @Autowired
-    APIModelRepository repository;
+    ApiDataModelRepository repository;
     @Autowired
     ExchangeCodeMapperModelRepository exchangeCodeMapperModelRepository;
 
@@ -41,12 +41,12 @@ public class CSVService {
     public void save(MultipartFile file) {
         try
         {
-          List<APIModel> apimodels = CSVHelper.csvToAPIModels(file.getInputStream());
+          List<ApiDataModel> apimodels = ApiDataServiceHelper.csvToAPIModels(file.getInputStream());
             exchangeCodeMappingForService = mapExchangeCode();
-          for(APIModel apiModel: apimodels){
-              apiModel.setExCode(exchangeCodeMappingForService.get(apiModel.getExCode()).trim());
-              if(apiModel.getExCode().equals("7119")){
-                  apiModel.setEnteredDate(modifyDateFormat(apiModel.getEnteredDate()));
+          for(ApiDataModel apiDataModel : apimodels){
+              apiDataModel.setExCode(exchangeCodeMappingForService.get(apiDataModel.getExCode()).trim());
+              if(apiDataModel.getExCode().equals("7119")){
+                  apiDataModel.setEnteredDate(modifyDateFormat(apiDataModel.getEnteredDate()));
               }
           }
           repository.saveAll(apimodels);
@@ -55,15 +55,15 @@ public class CSVService {
         }
     }
     public ByteArrayInputStream load() {
-        List<APIModel> apimodels = repository.findAll();
-        ByteArrayInputStream in = CSVHelper.apiModelToCSV(apimodels);
+        List<ApiDataModel> apimodels = repository.findAll();
+        ByteArrayInputStream in = ApiDataServiceHelper.apiModelToCSV(apimodels);
         return in;
     }
 
     public List<ExchangeCodeMapperModel> loadExchangeCodeMapperModel() {
         return exchangeCodeMapperModelRepository.findAll();
     }
-    public List<APIModel> getAllApiModels() {
+    public List<ApiDataModel> getAllApiModels() {
         return repository.findAll();
     }
 

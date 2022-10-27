@@ -5,7 +5,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
 @Table(name = "apiDataTable")
-public class APIModel {
+public class ApiDataModel {
     @Id
     @Column(name = "row_id")
     //@GeneratedValue(strategy=GenerationType.AUTO)
@@ -37,11 +37,11 @@ public class APIModel {
     @Column(name = "branchCode")
     private String branchCode;
 
-    public APIModel(){
+    public ApiDataModel(){
 
     }
 
-    public APIModel(String exCode, String tranNo, String currency, double amount, String enteredDate, String remitter, String beneficiary, String beneficiaryAccount, String bankName, String bankCode, String branchName, String branchCode){
+    public ApiDataModel(String exCode, String tranNo, String currency, double amount, String enteredDate, String remitter, String beneficiary, String beneficiaryAccount, String bankName, String bankCode, String branchName, String branchCode){
          this.exCode= exCode;
          this.tranNo= tranNo;
          this.currency = currency;

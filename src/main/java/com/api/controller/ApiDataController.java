@@ -1,9 +1,9 @@
 package com.api.controller;
 
 import com.api.ResponseMessage;
-import com.api.helper.CSVHelper;
-import com.api.model.APIModel;
-import com.api.service.CSVService;
+import com.api.helper.ApiDataServiceHelper;
+import com.api.model.ApiDataModel;
+import com.api.service.ApiDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -20,11 +20,11 @@ import java.util.List;
 @Controller
 @CrossOrigin("http://localhost:8080")
 @RequestMapping("/api")
-public class APIController {
-  private final CSVService fileService;
+public class ApiDataController {
+  private final ApiDataService fileService;
   @Autowired
-  public APIController(CSVService csvService){
-    this.fileService = csvService;
+  public ApiDataController(ApiDataService apiDataService){
+    this.fileService = apiDataService;
   }
     @GetMapping(value = "/index")
     public String homePage() {
@@ -41,7 +41,7 @@ public class APIController {
   @PostMapping("/upload")
   public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
     String message = "";
-    if (CSVHelper.hasCSVFormat(file)) {
+    if (ApiDataServiceHelper.hasCSVFormat(file)) {
       int extensionIndex = file.getOriginalFilename().lastIndexOf(".");
       String fileNameWithoutExtension = file.getOriginalFilename().substring(0,extensionIndex);
       try {
@@ -66,14 +66,14 @@ public class APIController {
 
 
   @GetMapping("/apimodels")
-  public ResponseEntity<List<APIModel>> getAllApiModels() {
+  public ResponseEntity<List<ApiDataModel>> getAllApiModels() {
     try {
-      List<APIModel> apiModels = fileService.getAllApiModels();
+      List<ApiDataModel> apiDataModels = fileService.getAllApiModels();
 
-      if (apiModels.isEmpty()) {
+      if (apiDataModels.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
       }
-      return new ResponseEntity<>(apiModels, HttpStatus.OK);
+      return new ResponseEntity<>(apiDataModels, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }

@@ -1,6 +1,6 @@
 package com.api.helper;
 
-import com.api.model.APIModel;
+import com.api.model.ApiDataModel;
 import org.apache.commons.csv.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class CSVHelper {
+public class ApiDataServiceHelper {
     public static String TYPE = "text/csv";
     static String[] HEADERs = {"Excode","Tranno","Currency","Amount","Entered Date","Remitter","Beneficiary","Bene A/C","Bank Name","Bank Code","Branch Name","Branch Code"};
     public static boolean hasCSVFormat(MultipartFile file) {
@@ -22,14 +22,14 @@ public class CSVHelper {
         return false;
     }
 
-    public static List<APIModel> csvToAPIModels(InputStream is) {
+    public static List<ApiDataModel> csvToAPIModels(InputStream is) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
           CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
-            List<APIModel> apiModelList = new ArrayList<>();
+            List<ApiDataModel> apiDataModelList = new ArrayList<>();
 
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
             for (CSVRecord csvRecord : csvRecords) {
-                APIModel apiModel = new APIModel(
+                ApiDataModel apiDataModel = new ApiDataModel(
                     csvRecord.get("Excode").replace("\"", ""),
                     csvRecord.get("Tranno").replace("\"", ""),
                     csvRecord.get("Currency").replace("\"", ""),
@@ -42,33 +42,33 @@ public class CSVHelper {
                     csvRecord.get("Bank Code").replace("\"", ""),
                     csvRecord.get("Branch Name").replace("\"", ""),
                     csvRecord.get("Branch Code").replace("\"", ""));
-                apiModelList.add(apiModel);
+                apiDataModelList.add(apiDataModel);
             }
-         return apiModelList;
+         return apiDataModelList;
         } catch (IOException e) {
             throw new RuntimeException("fail to parse CSV file: " + e.getMessage());
         }
     }
 
-    public static ByteArrayInputStream apiModelToCSV(List<APIModel> apiModelList) {
+    public static ByteArrayInputStream apiModelToCSV(List<ApiDataModel> apiDataModelList) {
         final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.NON_NUMERIC);
     
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
             CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format);) {
-          for (APIModel apiModel : apiModelList) {
+          for (ApiDataModel apiDataModel : apiDataModelList) {
             List<Object> data = Arrays.asList(
-                    apiModel.getTranNo(),
+                    apiDataModel.getTranNo(),
                     "CRED",
-                    apiModel.getEnteredDate(),
-                    apiModel.getCurrency(),
-                    apiModel.getAmount(),
-                    apiModel.getRemitter(),
-                    apiModel.getExCode(),
-                    apiModel.getBankName(),
-                    apiModel.getBranchName(),
+                    apiDataModel.getEnteredDate(),
+                    apiDataModel.getCurrency(),
+                    apiDataModel.getAmount(),
+                    apiDataModel.getRemitter(),
+                    apiDataModel.getExCode(),
+                    apiDataModel.getBankName(),
+                    apiDataModel.getBranchName(),
                     null,
-                    apiModel.getBeneficiaryAccount(),
-                    apiModel.getBeneficiary(),
+                    apiDataModel.getBeneficiaryAccount(),
+                    apiDataModel.getBeneficiary(),
                     null,
                     null,
                     //apiModel.getBankCode(),
