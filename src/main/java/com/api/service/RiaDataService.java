@@ -34,7 +34,7 @@ public class RiaDataService {
 
     public void clearDatabase(){
         truncateRiaDataTable();
-        truncateHibernetSequenceTable();
+        //truncateHibernetSequenceTable();
         truncateRiaSeqTable();
         initializeRiaSeqTable();
     }

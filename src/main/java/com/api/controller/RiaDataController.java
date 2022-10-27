@@ -5,7 +5,11 @@ import com.api.helper.RiaDataServiceHelper;
 import com.api.model.RiaDataModel;
 import com.api.service.RiaDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +49,7 @@ public class RiaDataController {
                 riaDataService.save(file);
                 message = "Uploaded the file successfully: " + file.getOriginalFilename();
                 String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                        .path("/ria/csv/download/")
+                        .path("/ria/download/")
                         .path(fileNameWithoutExtension + ".txt")
                         .toUriString();
 
@@ -73,6 +77,17 @@ public class RiaDataController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @GetMapping("/download/{fileName:.+}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName) {
+        InputStreamResource file = new InputStreamResource(riaDataService.load());
+        int extensionIndex = fileName.lastIndexOf(".");
+        String fileNameWithoutExtension = fileName.substring(0,extensionIndex);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+fileNameWithoutExtension+".txt")
+                .contentType(MediaType.parseMediaType("application/csv"))
+                .body(file);
     }
 
 

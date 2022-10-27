@@ -48,7 +48,7 @@ public class ApiDataController {
         fileService.save(file);
         message = "Uploaded the file successfully: " + file.getOriginalFilename();
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/api/csv/download/")
+                .path("/api/download/")
                 .path(fileNameWithoutExtension+".txt")
                 .toUriString();
 

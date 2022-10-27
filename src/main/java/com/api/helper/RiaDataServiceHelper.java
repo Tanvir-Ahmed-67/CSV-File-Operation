@@ -37,7 +37,6 @@ public class RiaDataServiceHelper {
                         csvRecord.get("Bene Name").replace("\"", ""),
                         csvRecord.get("Bene Account No").replace("\"", ""),
                         csvRecord.get("T24 Status").replace("\"", ""),
-                        csvRecord.get("T24 Status").replace("\"", ""),
                         csvRecord.get("Status").replace("\"", ""),
                         csvRecord.get("Paid Date").replace("\"", ""),
                         csvRecord.get("paidby").replace("\"", ""));
@@ -50,15 +49,15 @@ public class RiaDataServiceHelper {
     }
 
     public static ByteArrayInputStream riaDataModelsToCSV(List<RiaDataModel> riaDataModelList) {
-        final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.NONE);
+        final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.ALL);
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
              CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format);) {
             for (RiaDataModel riaDataModel : riaDataModelList) {
                 List<Object> data = Arrays.asList(
-                       // riaDataModel.getTranNo(),
+                       riaDataModel.getPin(),
                         "CRED",
-                        //riaDataModel.getEnteredDate(),
+                        riaDataModel.getAmount(),
                         //riaDataModel.getCurrency(),
                         //riaDataModel.getAmount(),
                         //riaDataModel.getRemitter(),

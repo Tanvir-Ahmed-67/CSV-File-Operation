@@ -69,7 +69,7 @@ public class ApiDataService {
 
     public void clearDatabase(){
         truncateApi_data_table();
-        truncateHibernetSequenceTable();
+       // truncateHibernetSequenceTable();
         truncateSeqTable();
         initializeSeqTable();
     }
