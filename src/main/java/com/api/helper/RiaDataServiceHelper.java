@@ -22,8 +22,8 @@ public class RiaDataServiceHelper {
     }
 
     public static List<RiaDataModel> csvToRiaDataModels(InputStream is) {
-        try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-             CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
+        try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+             CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim())) {
             List<RiaDataModel> riaDataModelList = new ArrayList<>();
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
             for (CSVRecord csvRecord : csvRecords) {
@@ -49,36 +49,30 @@ public class RiaDataServiceHelper {
     }
 
     public static ByteArrayInputStream riaDataModelsToCSV(List<RiaDataModel> riaDataModelList) {
-        final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.ALL);
+        final CSVFormat format = CSVFormat.INFORMIX_UNLOAD.withDelimiter('|');
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
-             CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format);) {
+             CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format)) {
             for (RiaDataModel riaDataModel : riaDataModelList) {
                 List<Object> data = Arrays.asList(
-                       riaDataModel.getPin(),
-                        "CRED",
+                        "7040",
+                        riaDataModel.getPin().trim(),
+                        "BDT",
                         riaDataModel.getAmount(),
-                        //riaDataModel.getCurrency(),
-                        //riaDataModel.getAmount(),
-                        //riaDataModel.getRemitter(),
-                        //riaDataModel.getExCode(),
-                        //riaDataModel.getBankName(),
-                        //riaDataModel.getBranchName(),
-                        null,
-                        //riaDataModel.getBeneficiaryAccount(),
-                        //riaDataModel.getBeneficiary(),
-                        null,
-                        null,
-                        //apiModel.getBankCode(),
+                        riaDataModel.getPaidDate().trim(),
+                        riaDataModel.getBeneficiaryName().trim(),
+                        riaDataModel.getRemitter().trim(),
+                        riaDataModel.getBeneficiaryAccount().trim(),
+                        "AGRANI BANK LTD.",
+                        "11",
+                        "Principal Br",
                         "4006",
-                        //apiModel.getBranchCode(),
                         null,
                         null,
                         null,
                         null,
                         null,
-                        null,
-                        null
+                        "0"
                 );
                 csvPrinter.printRecord(data);
             }
