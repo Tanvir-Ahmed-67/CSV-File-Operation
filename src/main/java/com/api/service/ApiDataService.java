@@ -5,6 +5,7 @@ import com.api.model.ApiDataModel;
 import com.api.model.ExchangeCodeMapperModel;
 import com.api.repository.ApiDataModelRepository;
 import com.api.repository.ExchangeCodeMapperModelRepository;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

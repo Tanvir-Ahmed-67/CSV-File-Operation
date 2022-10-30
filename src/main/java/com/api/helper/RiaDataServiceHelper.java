@@ -49,7 +49,7 @@ public class RiaDataServiceHelper {
     }
 
     public static ByteArrayInputStream riaDataModelsToCSV(List<RiaDataModel> riaDataModelList) {
-        final CSVFormat format = CSVFormat.INFORMIX_UNLOAD.withDelimiter('|');
+        final CSVFormat format = CSVFormat.DEFAULT.withDelimiter('|').withRecordSeparator("\r\n").withIgnoreEmptyLines(true);
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
              CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format)) {
