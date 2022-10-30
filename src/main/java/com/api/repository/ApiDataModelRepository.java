@@ -1,6 +1,6 @@
 package com.api.repository;
 
-import com.api.model.APIModel;
+import com.api.model.ApiDataModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public interface APIModelRepository extends JpaRepository<APIModel, Integer>{
+public interface ApiDataModelRepository extends JpaRepository<ApiDataModel, Integer>{
     @Modifying
     @Transactional
     @Query(

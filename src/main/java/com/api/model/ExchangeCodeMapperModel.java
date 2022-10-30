@@ -1,8 +1,6 @@
 package com.api.model;
 
 import javax.persistence.*;
-
-import static javax.persistence.GenerationType.SEQUENCE;
 @Entity
 @Table(name = "qvoucherinfo")
 public class ExchangeCodeMapperModel {

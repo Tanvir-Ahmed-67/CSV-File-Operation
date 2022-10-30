@@ -11,7 +11,7 @@ function uploadSingleFile(file) {
     formData.append("file", file);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/api/upload");
+    xhr.open("POST", "/ria/upload");
 
     xhr.onload = function() {
         console.log(xhr.responseText);
@@ -32,7 +32,7 @@ function uploadSingleFile(file) {
 }
 function clearDataTable(){
     var xhr1 = new XMLHttpRequest();
-    xhr1.open("GET", "/api/cleardb");
+    xhr1.open("GET", "/ria/cleardb");
     xhr1.onload = function() {
         console.log(xhr1.responseText);
         if(xhr1.status == 200) {
